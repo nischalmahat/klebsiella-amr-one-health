@@ -71,8 +71,8 @@ kagglehub             # Kaggle input helper (QC notebook only)
 # 4. Put kp_isolation_groups.py and kp_continent_groups.py in the same folder as
 #    kp_amr_workflow.ipynb (the notebook imports them)
 # 5. Edit BASE in download_kp_genomes.sh to your own folder
-# 6. Stage 3: upload genomes + mapping sheets to Kaggle; the notebook installs
-#    Miniforge, CheckM2 and Kleborate itself
+# 6. Stage 3: upload genomes + mapping sheets to Kaggle, and install
+#    Miniforge, CheckM2 and Kleborate inside the Kaggle notebook
 # 7. Stage 4: set BVBRC_USERNAME / BVBRC_PASSWORD (or BVBRC_TOKEN) as environment
 #    variables, set WS_OWNER to <your-username>@bvbrc, keep the design workbook
 #    (Sampling design KP 210.xlsx) in the folder you run from
