@@ -241,6 +241,6 @@ Still to come: **phylogenetic analysis** (BV-BRC Codon Tree + iTOL), **statistic
 
 ## Author
 
-**Nischal Mahat**: BSc Microbiology, Tribhuvan University, Lalitpur, Nepal
-**Interests**: antimicrobial resistance, infectious disease, computational biology
-mahatnischal75@gmail.com
+**Nischal Mahat**: BSc Microbiology, Tribhuvan University, Lalitpur, Nepal<br>
+**Interests**: antimicrobial resistance, infectious disease, computational biology<br>
+**Email**: mahatnischal75@gmail.com
