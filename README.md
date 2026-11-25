@@ -45,6 +45,7 @@ flowchart LR
 │   └── qc_results_all.csv.xlsx          # Stage 3: QC results for all 300 genomes
 ├── docs/
 │   ├── Sampling design KP 210.xlsx      # balanced 210-genome design (input of Stage 4)
+│   └── requirements.txt                 # the computational tools required to run the project
 │   └── study-workflow.png               # study workflow figure
 ├── scripts/
 │   ├── kp_amr_workflow.ipynb            # Stage 1: metadata cleaning + sampling
