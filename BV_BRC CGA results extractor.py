@@ -6,7 +6,7 @@ Sample set : Kp_sampling_design_v2_1.xlsx, sheet "Balanced_210"
              3 Isolation_Groups x 5 continents x 14 genomes = 210 (all QC KEEP).
              Sample_ID, Source_Group, Continent, Collection_year and the QC
              fingerprint (genome size, contigs, GC) all come from that workbook.
-Account / workspace : nischalmahat@bvbrc  ->  /home/KP_CGA/CGA Results/
+Account / workspace : <your-username>@bvbrc  ->  /home/KP_CGA/CGA Results/
                       ├── Animal CGA/         (KP001–KP100)
                       ├── Clinical CGA/       (KP101–KP200)
                       └── Environmental CGA/  (KP201–KP300)
