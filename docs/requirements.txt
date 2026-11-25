@@ -1,0 +1,78 @@
+# ======================================================================
+# Requirements: K. pneumoniae One Health Genomics (AMR + virulence)
+# Install the Python packages below with:  pip install -r requirements.txt
+# Items marked [not pip] must be installed separately (see SETUP).
+# ======================================================================
+
+# ---------- LANGUAGES ----------
+# Python >= 3.9        (Stages 1, 3, 4; Jupyter notebooks)
+# Bash                 (Stage 2; Ubuntu / WSL)
+
+# ---------- PLATFORMS ----------
+# Ubuntu Linux or Windows WSL2 (Ubuntu)   [not pip]  genome download, local work
+# Kaggle Notebooks (CPU, internet on)     [not pip]  Stage 3 quality control
+# Jupyter Notebook / JupyterLab                      Stage 1 (see below)
+
+# ---------- PYTHON PACKAGES (pip) ----------
+pandas>=2.0           # data cleaning, sampling, tables (all stages)
+numpy                 # numeric support (QC notebook)
+requests>=2.28        # BV-BRC API calls (Stage 4)
+urllib3>=1.26         # retry logic for requests (Stage 4)
+openpyxl>=3.1         # read/write Excel files (QC report, Stage 4 workbook)
+jupyterlab            # run the .ipynb notebooks
+kagglehub             # Kaggle input helper (QC notebook only)
+
+# Planned for the next stages (phylogeny, statistics, figures):
+# scipy               # Fisher / Fisher-Freeman-Halton tests, Cramer's V
+# statsmodels         # Benjamini-Hochberg (FDR) correction, confidence intervals
+# matplotlib          # heatmaps, bubble grids
+# seaborn             # heatmaps, bubble grids
+
+# Standard library only (no install): re, json, hashlib, subprocess, pathlib,
+# concurrent.futures, argparse, getpass, gzip, logging
+
+# ---------- COMMAND-LINE SOFTWARE [not pip] ----------
+# NCBI datasets CLI     genome download (Stage 2)
+# unzip                 extract downloaded genome zips (Stage 2)
+# wget                  fetch Miniforge installer (Stage 3)
+# Miniforge3 (conda)    isolated environments (Stage 3)
+# CheckM2 1.1.0         genome completeness + contamination
+#                       database: Zenodo record 14897628 (~3 GB, uniref100.KO.1.dmnd)
+# Kleborate 3.3.0b1     species check, MLST, virulence + resistance scores
+#                       modules: general__contig_stats, general__species
+
+# ---------- CONDA ENVIRONMENTS (Stage 3) ----------
+# checkm2     : conda create -n checkm2    -c conda-forge -c bioconda --override-channels checkm2=1.1.0
+# kleborate   : conda create -n kleborate  -c conda-forge -c bioconda --override-channels kleborate
+
+# ---------- WEB TOOLS / DATABASES / ACCOUNTS ----------
+# NCBI Pathogen Detection   source of K. pneumoniae metadata
+# NCBI Assembly (GenBank GCA_, RefSeq GCF_)   genome accessions
+# BV-BRC (free account)     Comprehensive Genome Analysis (CGA), Codon Tree
+#   CGA uses: RASTtk, AMRFinderPlus + NCBI Reference Gene Catalog,
+#             RGI + CARD, VFDB, Victors
+# iTOL                      phylogenetic tree visualisation (planned)
+# Kaggle account            run the QC notebook
+# Zenodo                    CheckM2 database download
+
+# ---------- PIPELINE ORDER ----------
+# 1 kp_amr_workflow.ipynb  -> clean metadata, group, sample 300 genomes
+# 2 download_kp_genomes.sh -> download 300 .fna genomes
+# 3 kp_qc_workflow.ipynb   -> duplicates (MD5), CheckM2, Kleborate, KEEP / EXCLUDE
+#   (balance to 210 genomes, then run BV-BRC CGA on the BV-BRC website)
+# 4 BV_BRC CGA results extractor.py -> one Excel workbook (15 sheets)
+# Planned: BV-BRC Codon Tree (RAxML) -> iTOL -> statistics -> figures
+
+# ---------- SETUP ----------
+# 1. python -m venv .venv && source .venv/bin/activate     (Windows: .venv\Scripts\activate)
+# 2. pip install -r requirements.txt
+# 3. Install NCBI datasets and unzip:  sudo apt update && sudo apt install -y unzip
+#    (datasets: https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/)
+# 4. Put kp_isolation_groups.py and kp_continent_groups.py in the same folder as
+#    kp_amr_workflow.ipynb (the notebook imports them)
+# 5. Edit BASE in download_kp_genomes.sh to your own folder
+# 6. Stage 3: upload genomes + mapping sheets to Kaggle; the notebook installs
+#    Miniforge, CheckM2 and Kleborate itself
+# 7. Stage 4: set BVBRC_USERNAME / BVBRC_PASSWORD (or BVBRC_TOKEN) as environment
+#    variables, set WS_OWNER to <your-username>@bvbrc, keep the design workbook
+#    (Sampling design KP 210.xlsx) in the folder you run from
